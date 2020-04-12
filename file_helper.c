@@ -113,7 +113,7 @@ for(i =0; i<size; i++){
       category[b].raceLength = info[i].raceLength;
       category[b].startTime = info[i].startTime;
       category[b].mountainTime = info[i].mountainTime;
-      category[b].mountainTime = info[i].mountainTime;
+      category[b].finishTime = info[i].finishTime;
       category[b].withdrawn = info[i].withdrawn;
 
       b++;
