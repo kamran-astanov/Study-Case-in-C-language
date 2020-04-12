@@ -96,6 +96,33 @@ int readFileRecord(FILE* fp, struct RiderInfo* info)
     return result;
 }
 
+void categorized(struct RiderCategory* category,struct RiderInfo *info)
+{
+
+int i=0, size=14, b=0, c=0;
+char ans[2];
+printf("Which category? ");
+scanf("%c", ans);
+
+for(i =0; i<size; i++){
+  if (info[i].raceLength == ans[0]){
+      for(c=0;c<30;c++){
+      category[b].name[c] = info[i].name[c];
+      }
+      category[b].age = info[i].age;
+      category[b].raceLength = info[i].raceLength;
+      category[b].startTime = info[i].startTime;
+      category[b].mountainTime = info[i].mountainTime;
+      category[b].mountainTime = info[i].mountainTime;
+      category[b].withdrawn = info[i].withdrawn;
+
+      b++;
+  }
+}
+}
+
+
+
 int menu(void) {
     //int choice;
     printf("******************** Seneca Cycline Race Results ********************\n");
