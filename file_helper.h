@@ -32,12 +32,24 @@
 struct RiderInfo
 {
     char name[31];
-    int age[3];
-    char raceLength[1];
+    int age;
+    char raceLength;
     int startTime;
     int mountainTime;
     int finishTime;
     char withdrawn;
+};
+
+struct RiderCategory
+{
+    char name[30];
+    int age;
+    char raceLength;
+    double startTime;
+    double mountainTime;
+    double finishTime;
+    char withdrawn;
+    
 };
 
 int menu(void);
@@ -59,8 +71,3 @@ void fileprint();
 int readFileRecord(FILE* fp, struct RiderInfo* info);
 
 #endif
-struct Name {
-    char firstName[31];
-    char middleInitial[31];
-    char lastName[36];
-};
