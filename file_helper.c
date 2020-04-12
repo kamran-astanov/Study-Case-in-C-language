@@ -96,7 +96,7 @@ int readFileRecord(FILE* fp, struct RiderInfo* info)
     return result;
 }
 
-void categorized(struct RiderCategory* category,struct RiderInfo *info)
+int categorized(struct RiderCategory* category,struct RiderInfo *info)
 {
 
 int i=0, size=14, b=0, c=0;
@@ -119,6 +119,7 @@ for(i =0; i<size; i++){
       b++;
   }
 }
+	return b;
 }
 
 
