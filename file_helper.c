@@ -101,7 +101,7 @@ int categorized(struct RiderCategory* category,struct RiderInfo *info)
 
 int i=0, size=14, b=0, c=0;
 char ans[2];
-printf("Which category? ");
+printf("Which category (S, M, L): ");
 scanf("%c", ans);
 
 for(i =0; i<size; i++){
