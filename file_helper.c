@@ -29,7 +29,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define SIZE 50
+
    /********************************************************/
    /* Read from the opened file the time (HH:MM) parts of  */
    /* the record and return the time as decimal hours      */
