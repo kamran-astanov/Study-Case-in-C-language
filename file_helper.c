@@ -159,16 +159,13 @@ int linecount(FILE *fp)
 void filePrint(struct RiderCategory* p, int size){
 
 int i=0;
-
-printf("size: %d\n", size);
 printf("Rider                    Age Group Time\n");
 printf("---------------------------------------\n");
 for(i=0; i<size; i++){
   
   printf("%-28s%-7s%5.2lf\n", p[i].name, p[i].ageGroup, p[i].finishTime);
   }
-
-}
+  }
 
 
 
