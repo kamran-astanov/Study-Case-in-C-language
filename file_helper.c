@@ -103,13 +103,22 @@ int i=0, size=14, b=0, c=0;
 char ans[2];
 printf("Which category (S, M, L): ");
 scanf("%c", ans);
+printf("\n");
 
 for(i =0; i<size; i++){
   if (info[i].raceLength == ans[0]){
       for(c=0;c<30;c++){
       category[b].name[c] = info[i].name[c];
       }
-      category[b].age = info[i].age;
+      if (16 <= info[i].age && info[i].age <=20){
+      strcpy(category[b].ageGroup, "Junior");
+    }
+     else if (21 <= info[i].age && info[i].age <=34){
+      strcpy(category[b].ageGroup, "Adult");
+    }
+    if (info[i].age && info[i].age >= 34){
+      strcpy(category[b].ageGroup, "Senior");
+    }
       category[b].raceLength = info[i].raceLength;
       category[b].startTime = info[i].startTime;
       category[b].mountainTime = info[i].mountainTime;
@@ -118,8 +127,47 @@ for(i =0; i<size; i++){
 
       b++;
   }
+  
 }
-	return b;
+return b;
+}
+
+
+
+int linecount(FILE *fp)
+{
+    int count = 0;
+
+    char c; 
+
+    // Extract characters from file and store in character c 
+
+    for (c = getc(fp); c != EOF; c = getc(fp))
+
+        if (c == '\n') // Increment count if this character is newline 
+
+            count = count + 1;
+    // Close the file 
+
+    fclose(fp);
+
+    return count + 1;
+
+}
+
+
+void filePrint(struct RiderCategory* p, int size){
+
+int i=0;
+
+printf("size: %d\n", size);
+printf("Rider                    Age Group Time\n");
+printf("---------------------------------------\n");
+for(i=0; i<size; i++){
+  
+  printf("%-28s%-7s%5.2lf\n", p->name, p->ageGroup, p->finishTime);
+  }
+
 }
 
 
@@ -138,6 +186,8 @@ int menu(void) {
     return getIntInRange(0, 6);
     printf("\n");
 }
+
+
 int getIntInRange(int min, int max) {
     int value;
     value = getInt();
@@ -147,69 +197,37 @@ int getIntInRange(int min, int max) {
     }
     return value;
 }
-int getInt() {
-    int value;
-    char newline = 'x';
-    scanf("%d%c", &value, &newline);
-    while (newline != '\n') {
-        clearKeyboard();
-        printf("*** INVALID INTEGER *** <Please enter an integer>: ");
-        scanf("%d%c", &value, &newline);
-    }
-    return value;
+
+int getInt(void) {
+
+   int value;
+
+   char newline = 'x';
+
+   scanf("%d%c", &value, &newline);
+
+   while (newline != '\n') {
+
+      clearKeyboard();
+
+      printf("*** INVALID INTEGER *** <Please enter an integer>: ");
+
+      scanf("%d%c", &value, &newline);
+
 }
+
+   return value;
+
+}
+
+
 void clearKeyboard(void) {
-    while (getchar() != '\n'); // empty execution code block on purpose
+
+    while (getchar() != '\n'); 
+
 }
-int linecount(filename)
-{
-    FILE* fp;
-    int count = 0;
-    char c; 
-    fp = fopen(filename, "r");
 
 
-    // Extract characters from file and store in character c 
-    for (c = getc(fp); c != EOF; c = getc(fp))
-        if (c == '\n') // Increment count if this character is newline 
-            count = count + 1;
 
-    // Close the file 
-    fclose(fp);
-    return count + 1;
-}
-/*void fileprint() {
-    int lcount = linecount("data.txt");
-    FILE* fp = fopen("data.txt", "r");
-    int i = 1;
-    while(i < lcount) {
-        fgets(i, 50, fp);
-        printf("%s\n", i);
-        i++;
-        printf("%s", i);
-    }
-    printf("%d\n", i);
-}*/
-void fileprint()
-{
-    
-    char new_num[SIZE];
-    FILE* ifp = NULL;
-    int i, j, n, m;
 
-    
-    ifp = fopen("data.txt", "r");
-    if (ifp != NULL)
-    {
-        fscanf(ifp, "%d %d", &n, &m);
-        printf("Data from the file: %d, %d \n", n, m);
-    }
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < m; j++) {
-            fscanf(ifp, "%s", new_num);
-            printf("new num : %s\n ", new_num);
-        }
-    }
-    fclose(ifp);
-    return 0;
-}
+
