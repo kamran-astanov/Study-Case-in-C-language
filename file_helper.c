@@ -166,7 +166,8 @@ void lastThree(struct RiderCategory *p, struct LastThreeRiders *a, int size)
         if (p[i].diffTime > a[0].time) {
             a[0].time = p[i].diffTime;
             for(c=0;c<15;c++){
-            a[0].name[c] = p[i].name[c]; 
+            a[0].name[c] = p[i].name[c];}
+	    for(c=0;c<9;c++){
             a[0].ageGroup[c] = p[i].ageGroup[c];
         }
     }
@@ -177,7 +178,8 @@ void lastThree(struct RiderCategory *p, struct LastThreeRiders *a, int size)
         if (p[i].diffTime > a[1].time  && p[i].diffTime < a[0].time) {
             a[1].time = p[i].diffTime; 
             for(c=0;c<15;c++){
-            a[1].name[c] = p[i].name[c]; 
+            a[1].name[c] = p[i].name[c]; }
+	    for(c=0;c<9;c++){
             a[1].ageGroup[c] = p[i].ageGroup[c];
         }
         }
@@ -188,7 +190,8 @@ void lastThree(struct RiderCategory *p, struct LastThreeRiders *a, int size)
         if (p[i].diffTime > a[2].time && p[i].diffTime < a[1].time) {
             a[2].time = p[i].diffTime;
             for(c=0;c<15;c++){
-            a[2].name[c] = p[i].name[c];
+            a[2].name[c] = p[i].name[c];}
+	    for(c=0;c<9;c++){
             a[2].ageGroup[c] = p[i].ageGroup[c];
         }
         }
@@ -210,6 +213,62 @@ for(i=0; i<newsize; i++){
   }
 }
 } 
+
+
+void topThree(struct RiderCategory *p, struct topThreeRiders *a, int size) {
+  
+  int c=0, i=0; 
+   a[0].finalTime = 1000, a[1].finalTime = 1000, a[2].finalTime = 1000;
+   for (int i = 0; i < size; i++) {
+      if (p[i].diffTime < a[0].finalTime) {
+         a[0].finalTime = p[i].diffTime;
+          for(c=0;c<15;c++){
+            a[0].name[c] = p[i].name[c]; }
+            for(c=0;c<9;c++){
+            a[0].ageGroup[c] = p[i].ageGroup[c];
+        }
+      }
+   }
+   for (int i = 0; i < size; i++){
+     if (p[i].diffTime < a[1].finalTime && p[i].diffTime > a[0].finalTime) {
+         a[1].finalTime = p[i].diffTime;
+         for(c=0;c<15;c++){
+            a[1].name[c] = p[i].name[c]; }
+            for(c=0;c<9;c++){
+            a[1].ageGroup[c] = p[i].ageGroup[c];
+        }
+     }
+   }
+   for (int i = 0; i < size; i++){
+     if (p[i].diffTime < a[2].finalTime && p[i].diffTime > a[1].finalTime){
+        a[2].finalTime = p[i].diffTime;
+     
+        for(c=0;c<15;c++){
+            a[2].name[c] = p[i].name[c];}
+            for(c=0;c<9;c++){
+            a[2].ageGroup[c] = p[i].ageGroup[c];
+        }
+   }
+   }
+  
+int newsize=3;
+printf("Rider                    Age Group Time\n");
+printf("---------------------------------------\n");
+for(i=0; i<newsize; i++){
+  double firstnum = a[i].finalTime;
+  int hour = (int)firstnum;
+  double minute = firstnum - hour;
+  double finalnum = minute * 60;
+  if(finalnum<10){
+  printf("%-28s%-7s%d:0%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
+  }
+  else{
+  printf("%-28s%-7s%d:%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
+  }
+}
+} 
+
+
 
 
 
