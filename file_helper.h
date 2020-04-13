@@ -43,7 +43,7 @@ struct RiderInfo
 struct RiderCategory
 {
     char name[30];
-    int age;
+    char ageGroup[10];
     char raceLength;
     double startTime;
     double mountainTime;
