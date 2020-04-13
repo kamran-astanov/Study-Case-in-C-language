@@ -31,7 +31,7 @@
    /********************************************************/
 struct RiderInfo
 {
-    char name[31];
+    char name[20];
     int age;
     char raceLength;
     int startTime;
@@ -42,7 +42,7 @@ struct RiderInfo
 
 struct RiderCategory
 {
-    char name[30];
+    char name[20];
     char ageGroup[10];
     char raceLength;
     double startTime;
@@ -55,9 +55,16 @@ struct RiderCategory
 
 struct LastThreeRiders
 {
-    char name[30];
+    char name[20];
     char ageGroup[10];
     double time;
+};
+
+struct topThreeRiders
+{
+    char name[20];
+    char ageGroup[10];
+    double finalTime;
 };
 
 
