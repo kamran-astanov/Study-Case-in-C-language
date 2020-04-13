@@ -52,6 +52,16 @@ struct RiderCategory
     
 };
 
+
+struct LastThreeRiders
+{
+    char name[30];
+    char ageGroup[10];
+    double time;
+};
+
+
+
 int menu(void);
 int getIntInRange(int, int);
 int getInt();
