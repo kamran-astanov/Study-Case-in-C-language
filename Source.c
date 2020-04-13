@@ -26,13 +26,15 @@
 #include <stdio.h>
 int main(void) {
 
-    FILE* fp;
-    fp = fopen("data.txt", "r");
-    struct RiderInfo riders[14];
-    readFileRecord(fp, riders);
-    printf("name: %s\n", riders[5].name);
-
-    return 0;
+  FILE *fp;
+  fp = fopen("data.txt", "r");
+  struct RiderInfo riders[14];
+  struct RiderCategory category[14];
+  struct LastThreeRiders last[14];
+  readFileRecord(fp, riders); 
+  int size = categorized(category, riders);
+  lastThree(category, last, size);
+  
 }
 /*{
     int lines;
