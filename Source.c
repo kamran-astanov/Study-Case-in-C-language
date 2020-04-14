@@ -36,6 +36,7 @@ int main(void) {
   int size = categorized(category, riders);
   lastThree(category, last, size);
   topThree(category, top, size);
+  allRiders(category,size);
   
 }
 /*{
