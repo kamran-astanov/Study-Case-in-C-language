@@ -48,7 +48,7 @@ struct RiderCategory
     double startTime;
     double mountainTime;
     double finishTime;
-    char withdrawn;
+    char withdrawn[5];
     
 };
 
