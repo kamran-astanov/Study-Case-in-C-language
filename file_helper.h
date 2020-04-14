@@ -67,6 +67,13 @@ struct topThreeRiders
     double finalTime;
 };
 
+struct winnerRiders
+{
+    char name[20];
+    char ageGroup[10];
+    char raceGroup[10];
+    double finalTime;
+};
 
 
 int menu(void);
