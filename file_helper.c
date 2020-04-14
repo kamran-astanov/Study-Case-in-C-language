@@ -210,10 +210,10 @@ for(i=0; i<newsize; i++){
   double minute = firstnum - hour;
   double finalnum = minute * 60;
   if(finalnum<10){
-  printf("%-28s%-7s%d:0%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
+  printf("%-28s%6s%2d:0%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
   }
   else{
-  printf("%-28s%-7s%d:%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
+  printf("%-28s%6s%2d:%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
   }
 }
 } 
@@ -264,10 +264,10 @@ for(i=0; i<newsize; i++){
   double minute = firstnum - hour;
   double finalnum = minute * 60;
   if(finalnum<10){
-  printf("%-28s%-7s%d:0%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
+  printf("%-28s%6s%2d:0%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
   }
   else{
-  printf("%-28s%-7s%d:%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
+  printf("%-28s%6s%2d:%.0lf\n", a[i].name, a[i].ageGroup, hour, finalnum);
   }
 }
 } 
@@ -311,10 +311,10 @@ for(i=0; i<size; i++){
   double minute = firstnum - hour;
   double finalnum = minute * 60;
   if(finalnum<10){
-  printf("%-28s%-7s%d:0%.0lf%9s\n", p[i].name, p[i].ageGroup, hour, finalnum, p[i].withdrawn);
+  printf("%-28s%6s%2d:0%.0lf%9s\n", p[i].name, p[i].ageGroup, hour, finalnum, p[i].withdrawn);
   }
   else{
-  printf("%-28s%-7s%d:%.0lf%9s\n", p[i].name, p[i].ageGroup, hour, finalnum,p[i].withdrawn);
+  printf("%-28s%6s%2d:%.0lf%9s\n", p[i].name, p[i].ageGroup, hour, finalnum,p[i].withdrawn);
   }
 
 }
@@ -400,7 +400,7 @@ for(i=0; i<newsize; i++){
   double minute = firstnum - hour;
   double finalnum = minute * 60;
   if(finalnum<10){
-  printf("%-28s%-6s%9s%2d:0%.0lf\n", a[i].name, a[i].ageGroup, a[i].raceGroup,hour, finalnum);
+  printf("%-28s%6s%9s%2d:0%.0lf\n", a[i].name, a[i].ageGroup, a[i].raceGroup,hour, finalnum);
   }
   else{
   printf("%-28s%6s%9s%2d:%.0lf\n", a[i].name, a[i].ageGroup,a[i].raceGroup, hour, finalnum);
