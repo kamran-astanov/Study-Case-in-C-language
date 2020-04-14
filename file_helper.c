@@ -71,12 +71,12 @@ int readFileRecord(FILE* fp, struct RiderInfo* info)
 
             //Last Field (withdrawn: may not be present)
             ch = fgetc(fp);
-            info->withdrawn = 0;
+            info[i].withdrawn = 0;
 
             if (ch == ' ')
             {
                 ch = fgetc(fp);
-                info->withdrawn = ch == 'W';
+                info[i].withdrawn = ch;
                 ch = fgetc(fp);
             }
 
@@ -124,7 +124,11 @@ for(i =0; i<size; i++){
       category[b].startTime = info[i].startTime;
       category[b].mountainTime = info[i].mountainTime;
       category[b].finishTime = info[i].finishTime;
-      category[b].withdrawn = info[i].withdrawn;
+      if (info[i].withdrawn == 'W'){
+      strcpy(category[b].withdrawn, "Yes");
+      }
+      else{strcpy(category[b].withdrawn, "NO");
+      }
 
       b++;
   }
@@ -268,6 +272,53 @@ for(i=0; i<newsize; i++){
 }
 } 
 
+
+void allRiders (struct RiderCategory *p, int size){
+
+printf("Rider                    Age Group Time Withdrew\n");
+printf("------------------------------------------------\n");
+int a=0, b=0;
+ int  i, j, k;
+  double temp;
+  char arr[16];
+  //Sorting Riders according to Time
+   for (j = 0; j < size; j++)
+   {
+      for (k = j+1 ; k < size; k++)
+      {
+         if (p[j].diffTime > p[k].diffTime)
+         {
+            temp = p[j].diffTime;
+            p[j].diffTime = p[k].diffTime;
+            p[k].diffTime = temp;
+            for (i=0; i< 15; i++){
+            arr[i] = p[j].name[i];
+            p[j].name[i] = p[k].name[i];
+            p[k].name[i] = arr[i];
+         }
+         for (i=0; i< 15; i++){
+            arr[i] = p[j].ageGroup[i];
+            p[j].ageGroup[i] = p[k].ageGroup[i];
+            p[k].ageGroup[i] = arr[i];
+         }
+         }
+      }
+   }
+
+for(i=0; i<size; i++){
+  double firstnum = p[i].diffTime;
+  int hour = (int)firstnum;
+  double minute = firstnum - hour;
+  double finalnum = minute * 60;
+  if(finalnum<10){
+  printf("%-28s%-7s%d:0%.0lf%9s\n", p[i].name, p[i].ageGroup, hour, finalnum, p[i].withdrawn);
+  }
+  else{
+  printf("%-28s%-7s%d:%.0lf%9s\n", p[i].name, p[i].ageGroup, hour, finalnum,p[i].withdrawn);
+  }
+
+}
+}
 
 
 
