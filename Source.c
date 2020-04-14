@@ -32,11 +32,14 @@ int main(void) {
   struct RiderCategory category[14];
   struct LastThreeRiders last[14];
   struct topThreeRiders top[14];
+  struct winnerRiders winners[14];
   readFileRecord(fp, riders); 
   int size = categorized(category, riders);
   lastThree(category, last, size);
   topThree(category, top, size);
   allRiders(category,size);
+  winnerRiders(riders, winners);
+
   
 }
 /*{
