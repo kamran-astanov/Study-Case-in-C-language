@@ -320,7 +320,93 @@ for(i=0; i<size; i++){
 }
 }
 
+void winnerRiders(struct RiderInfo *p, struct winnerRiders *a){
 
+int i =0,k=0, size=15, newsize=3;
+double arr[10];
+a[0].finalTime = p[0].finishTime-p[0].startTime;
+a[1].finalTime = p[0].finishTime-p[0].startTime;
+a[2].finalTime = p[0].finishTime-p[0].startTime;
+
+for (i=0; i<size;i++){
+
+if (p[i].raceLength == 'S'){
+  if (p[i].finishTime-p[i].startTime <= a[0].finalTime){
+         a[0].finalTime = p[i].finishTime-p[i].startTime;
+         for(k=0;k<16;k++){
+           a[0].name[k] = p[i].name[k];
+         }
+         for(k=0;k<9;k++){
+           if (16 <= p[i].age && p[i].age <=20){
+           strcpy(a[0].ageGroup, "Junior");
+           }
+           else if (21 <= p[i].age && p[i].age <=34){
+           strcpy(a[0].ageGroup, "Adult");
+           }
+          else if (p[i].age && p[i].age >= 34){
+          strcpy(a[0].ageGroup, "Senior");
+          }
+         }
+         strcpy(a[0].raceGroup, "50 km");
+      }
+    }
+else if (p[i].raceLength == 'M'){
+  if (p[i].finishTime-p[i].startTime <= a[1].finalTime){
+         a[1].finalTime = p[i].finishTime-p[i].startTime;
+         for(k=0;k<16;k++){
+           a[1].name[k] = p[i].name[k];
+         }
+         for(k=0;k<9;k++){
+           if (16 <= p[i].age && p[i].age <=20){
+           strcpy(a[1].ageGroup, "Junior");
+           }
+           else if (21 <= p[i].age && p[i].age <=34){
+           strcpy(a[1].ageGroup, "Adult");
+           }
+          else if (p[i].age && p[i].age >= 34){
+          strcpy(a[1].ageGroup, "Senior");
+          }
+         }
+         strcpy(a[1].raceGroup, "75 km");
+      }
+    }
+else if (p[i].raceLength == 'L'){
+  if (p[i].finishTime-p[i].startTime <= a[2].finalTime){
+         a[2].finalTime = p[i].finishTime-p[i].startTime;
+         for(k=0;k<16;k++){
+           a[2].name[k] = p[i].name[k];
+         }
+         for(k=0;k<9;k++){
+           if (16 <= p[i].age && p[i].age <=20){
+           strcpy(a[2].ageGroup, "Junior");
+           }
+           else if (21 <= p[i].age && p[i].age <=34){
+           strcpy(a[2].ageGroup, "Adult");
+           }
+          else if (p[i].age && p[i].age >= 34){
+          strcpy(a[2].ageGroup, "Senior");
+          }
+         }
+         strcpy(a[2].raceGroup, "100 km");
+      }
+    }
+}
+printf("Rider                    Age Group Category Time\n");
+printf("------------------------------------------------\n");
+
+for(i=0; i<newsize; i++){
+  double firstnum = a[i].finalTime;
+  int hour = (int)firstnum;
+  double minute = firstnum - hour;
+  double finalnum = minute * 60;
+  if(finalnum<10){
+  printf("%-28s%-6s%9s%2d:0%.0lf\n", a[i].name, a[i].ageGroup, a[i].raceGroup,hour, finalnum);
+  }
+  else{
+  printf("%-28s%6s%9s%2d:%.0lf\n", a[i].name, a[i].ageGroup,a[i].raceGroup, hour, finalnum);
+  }
+}
+}
 
 
 int menu(void) {
