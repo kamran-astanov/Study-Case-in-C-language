@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <string.h>
+
+
+
+struct RiderInfo
+{
+    char name[30];
+    int age;
+    char raceLength;
+    double startTime;
+    double mountainTime;
+    double finishTime;
+    char withdrawn;
+    
+};
+
+
+double readTime(FILE* fp)
+{
+	int hour, min;
+
+	fscanf(fp, "%d%*c", &hour);
+	fscanf(fp, "%d", &min);
+
+	return hour + (min / 60.0);
+}
+
+
+int readFileRecord(FILE* fp, struct RiderInfo* info)
+{
+	int result = 1, ch;
+
+	if (!feof(fp))
+	{
+    char ans[2];
+		int i=0, size= 14;
+		// read from file and assign to data structure
+   for (i =0; i < size; i++){
+		fscanf(fp, "%[^,]%*c", info[i].name);
+		fscanf(fp, "%d", &info[i].age);
+		fscanf(fp, " %c", &info[i].raceLength);
+		info[i].startTime = readTime(fp);
+		info[i].mountainTime = readTime(fp);
+		info[i].finishTime = readTime(fp);
+    
+   
+    
+		//Last Field (withdrawn: may not be present)
+		ch = fgetc(fp);
+		info->withdrawn = 0;
+
+		if (ch == ' ') 
+		{
+			ch = fgetc(fp);
+			info->withdrawn = ch == 'W';
+			ch = fgetc(fp);
+		}
+   
+		// clear input file buffer until end of line (record):
+		while (!feof(fp) && ch != '\n')
+		{
+			ch = fgetc(fp);
+		}
+    result = 0;
+    
+    }
+    result = 0;
+    }
+  
+    
+
+	return result;
+}
+
+int main(void) {
+
+  FILE *fp;
+  fp = fopen("data.txt", "r");
+  struct RiderInfo riders[14];
+  readFileRecord(fp, riders);
+  printf("name: %s\n", riders[5].name);
+  
+  return 0;
+}

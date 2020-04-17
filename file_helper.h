@@ -5,7 +5,7 @@
 
    Fullname                    Seneca Email Address
    --------------------------- ----------------------------
-   1) Kamran Astanov            kastanov@mysenea.ca
+   1) Adam Bobbie              abobbie@myseneca.ca
    2)
    3)
 
@@ -25,25 +25,63 @@
 
 #include <stdio.h>
 
-/********************************************************/
-/* Define the missing members for the RiderInfo data    */
-/* used to store Rider information read from a file     */
-/********************************************************/
+   /********************************************************/
+   /* Define the missing members for the RiderInfo data    */
+   /* used to store Rider information read from a file     */
+   /********************************************************/
 struct RiderInfo
-
 {
-
     char name[20];
     int age;
+    char raceLength;
+    int startTime;
+    int mountainTime;
+    int finishTime;
+    char withdrawn;
+};
+
+struct RiderCategory
+{
+    char name[20];
+    char ageGroup[10];
     char raceLength;
     double startTime;
     double mountainTime;
     double finishTime;
-    char withdrawn;
+    char withdrawn[5];
+    
 };
 
 
+struct LastThreeRiders
+{
+    char name[20];
+    char ageGroup[10];
+    double time;
+};
 
+struct topThreeRiders
+{
+    char name[20];
+    char ageGroup[10];
+    double finalTime;
+};
+
+struct winnerRiders
+{
+    char name[20];
+    char ageGroup[10];
+    char raceGroup[10];
+    double finalTime;
+};
+
+
+int menu(void);
+int getIntInRange(int, int);
+int getInt();
+void clearKeyboard(void);
+int linecount();
+void fileprint();
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!        DO NOT ALTER THE CONTENTS BELOW       !!!*/
 /*!!!             ( function prototype )           !!!*/
@@ -54,7 +92,6 @@ struct RiderInfo
 /* file and store it in the struct. Return true         */
 /* when end of file has been reached.                   */
 /********************************************************/
-int readFileRecord(const char *filename, struct RiderInfo* Info, int);
-double readTime(FILE* fp);
+int readFileRecord(FILE* fp, struct RiderInfo* info);
 
 #endif
