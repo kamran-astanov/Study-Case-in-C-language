@@ -5,6 +5,7 @@
 #include "file_helper.h"
 #include "myfile.h"
 
+
 int categorized(struct RiderCategory* category,struct RiderInfo *info, int size)
 {
 int i=0, b=0, c=0;
@@ -12,9 +13,11 @@ char ans[2];
 printf("Which category (S, M, L): ");
 scanf("%c", ans);
 printf("\n");
+if ( ans[0] == 's' ){strcpy(ans, "S");}
+if ( ans[0] == 'l' ){strcpy(ans, "L");}
+if ( ans[0] == 'm' ){strcpy(ans, "M");}
 
 for(i =0; i<size; i++){
-
   if (info[i].raceLength == ans[0]){
       for(c=0;c<30;c++){
       category[b].name[c] = info[i].name[c];
@@ -309,5 +312,136 @@ for(i=0; i<newsize; i++){
   printf("%-28s%6s%9s%2d:%.0lf\n", a[i].name, a[i].ageGroup,a[i].raceGroup, hour, finalnum);
   }
 }
+}
+
+int menu(void) {
+
+   int value;
+
+   printf("******************** Seneca Cycling Race Results ********************\n");
+   printf("What would you like to do?\n");
+    printf("0 – Exit\n");
+   printf("1 – Print top 3 riders in a category\n");
+   printf("2 – Print all riders in a category\n");
+   printf("3 – Print last 3 riders in a category\n");
+   printf("4 – Print winners in all categories\n");
+   printf(":");
+   value = getIntInRange(0,4);
+
+   return value;
+}
+
+
+int getIntInRange(int min, int max) {
+
+   int value;
+
+   value = getInt();
+
+   while (value < min || value > max) {
+
+   printf("*** OUT OF RANGE *** <Enter a number between %d and %d>: ", min, max);
+
+   value = getInt();
+
+}
+
+   return value;
+
+}
+
+
+int getInt(void) {
+
+   int value;
+
+   char newline = 'x';
+
+   scanf("%d%c", &value, &newline);
+
+   while (newline != '\n') {
+
+      clearKeyboard();
+
+      printf("*** INVALID INTEGER *** <Please enter an integer>: ");
+
+      scanf("%d%c", &value, &newline);
+
+}
+
+   return value;
+
+}
+
+
+void clearKeyboard(void) {
+
+    while (getchar() != '\n'); 
+
+}
+
+int yes(void) {
+
+   char ch;
+   char newline = 'x';
+   scanf(" %c%c", &ch, &newline);
+   while ((ch != 'y' && ch != 'Y' && ch != 'n' && ch != 'N') || newline != '\n') {
+   if (newline != '\n') {
+   clearKeyboard();
+}
+   printf("*** INVALID ENTRY *** <Only (Y)es or (N)o are acceptable>: ");
+   scanf(" %c%c", &ch, &newline);
+}
+   return (ch == 'y' || ch == 'Y');
+}
+
+void riderCompetition(int sizeofline) {
+
+   int option;
+   int done = 0;
+   int size=0;
+   
+ while (!done) {
+
+      option = menu();
+
+      printf("\n");
+
+      switch (option) {
+
+      case 1:
+        size = categorized(category, riders, sizeofline);
+        topThree(category, top, size);
+        printf("\n");
+        break;
+
+      case 2:
+         size = categorized(category, riders, sizeofline);
+         allRiders(category,size);        
+         printf("\n");
+         break;
+
+      case 3:
+         size = categorized(category, riders, sizeofline);
+         lastThree(category, last, size);
+         printf("\n");
+         break;
+
+      case 4:
+          
+         winnerRiders(riders, winners);
+         printf("\n");
+         break;
+
+      default:
+
+         printf("Exit the program? (Y)es/(N)o: ");
+         if (yes() == 1) {
+            printf("\nKeep on Riding!");
+            done = 1;
+         }
+         printf("\n");
+      }
+   }
 }
 
