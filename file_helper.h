@@ -5,7 +5,7 @@
 
    Fullname                    Seneca Email Address
    --------------------------- ----------------------------
-   1)
+   1) Kamran Astanov            kastanov@mysenea.ca
    2)
    3)
 
