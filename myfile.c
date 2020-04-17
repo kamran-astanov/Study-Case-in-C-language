@@ -157,7 +157,7 @@ void topThree(struct RiderCategory *p, struct topThreeRiders *a, int size) {
 
   int c=0, i=0; 
    a[0].finalTime = 1000, a[1].finalTime = 1000, a[2].finalTime = 1000;
-   for (int i = 0; i < size; i++) {
+   for ( i = 0; i < size; i++) {
       if (p[i].diffTime < a[0].finalTime) {
          a[0].finalTime = p[i].diffTime;
           for(c=0;c<15;c++){
@@ -167,7 +167,7 @@ void topThree(struct RiderCategory *p, struct topThreeRiders *a, int size) {
         }
         }
  }
-   for (int i = 0; i < size; i++){
+   for ( i = 0; i < size; i++){
      if (p[i].diffTime < a[1].finalTime && p[i].diffTime > a[0].finalTime) {
          a[1].finalTime = p[i].diffTime;
          for(c=0;c<15;c++){
@@ -177,7 +177,7 @@ void topThree(struct RiderCategory *p, struct topThreeRiders *a, int size) {
         }
      }
    }
-   for (int i = 0; i < size; i++){
+   for ( i = 0; i < size; i++){
      if (p[i].diffTime < a[2].finalTime && p[i].diffTime > a[1].finalTime){
         a[2].finalTime = p[i].diffTime;
         for(c=0;c<15;c++){
