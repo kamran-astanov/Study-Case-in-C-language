@@ -464,7 +464,7 @@ void riderCompetition(int sizeofline) {
 
          printf("Exit the program? (Y)es/(N)o: ");
          if (yes() == 1) {
-            printf("\nKeep on Riding!");
+            printf("\nKeep on Riding\n!");
             done = 1;
          }
          printf("\n");
