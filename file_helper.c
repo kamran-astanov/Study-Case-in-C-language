@@ -53,9 +53,9 @@ int readFileRecord(const char *filename, struct RiderInfo* info, int sizeofline)
     int result = 1, ch;
     if (!feof(fp))
 {
-        int i = 0, size=14;
+        int i = 0;
         // read from file and assign to data structure
-        for (i = 0; i < size; i++) {
+        for (i = 0; i < sizeofline; i++) {
             fscanf(fp, "%[^,]%*c", info[i].name);
             fscanf(fp, "%d", &info[i].age);
             fscanf(fp, " %c", &info[i].raceLength);
